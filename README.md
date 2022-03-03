@@ -2,6 +2,11 @@
 
 Find the jobs most relevant to the skills of a software engineer.
 
+See the video example:
+
+[![Watch the video](https://i9.ytimg.com/vi/Tpj7JBSDI5M/mq1.jpg?sqp=CJCzhJEG&rs=AOn4CLCAi_zbwNQNa-JrMyGPWNO8UDArnA)](https://youtu.be/Tpj7JBSDI5M)
+
+
 ### This Repo
 
 This Laravel project provides a back-end API to manage a data set of jobs, job skills, and job descriptions. You can view the documentation at https://jobscantakehomeprojectapi.docs.apiary.io/, which is generated from [this file](openapi.yaml).
