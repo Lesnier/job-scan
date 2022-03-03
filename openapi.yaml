@@ -1,0 +1,186 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+  - description: Development
+    url: http://jobscan-takehome.test/api
+info:
+  description: JSCTHP API
+  version: "1.0.0"
+  title: JSCTHP-API
+paths:
+  /postings/search/skills:
+    get:
+      tags:
+        - postings
+      summary: Searches Job Postings for jobs matching requested skills
+      description: |
+        Searches for job postings that match the requested skills, uses the passed score values to sort the responding array
+      parameters:
+        - in: query
+          name: skill
+          description: List of Skills with rank scores from 1 to 5
+          required: true
+          schema:
+            $ref: "#/components/schemas/SkillsQueryObject"
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  skills:
+                    $ref: "#/components/schemas/SkillsQueryObject"
+                  count:
+                    type: integer
+                    description: Number of Job Postings Returned
+                    minimum: 0
+                  results:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/JobPostingObject"
+  /skills:
+    get:
+      tags:
+        - Skills
+      summary: Returns a list of all skills in the database
+      responses:
+        '200':
+          description: List of Skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SkillObject"
+components:
+  schemas:
+    SkillsQueryObject:
+      type: object
+      additionalProperties:
+        type: integer
+      example:
+        php: 5
+        linux: 4
+        jquery: 3
+    JobPostingObject:
+      type: object
+      description: Job Posting
+      properties:
+        id:
+          type: integer
+          description: Job Posting ID
+          example: 1029
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-09-10T07:48:33.000000Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-09-10T07:48:33.000000Z'
+        deleted_at:
+          type: string
+          format: date-time
+          example: null
+        title:
+          type: string
+          example: "Software Engineer"
+        company_id:
+          type: integer
+          example: 1
+        skills_count:
+          type: integer
+          minimum: 0
+          example: 1
+        score:
+          type: integer
+          minimum: 0
+          example: 5
+        skill_list:
+          type: array
+          items:
+            type: string
+            example: "PHP"
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/PivotedSkillObject"
+        company:
+          $ref: "#/components/schemas/CompanyObject"
+    SkillObject:
+      type: object
+      description: Skill
+      properties:
+        id:
+          type: integer
+          minimum: 1
+          example: 1
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-09-10T07:48:33.000000Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-09-10T07:48:33.000000Z'
+        deleted_at:
+          type: string
+          format: date-time
+          example: null
+        name:
+          type: string
+          example: "PHP"
+        slug:
+          type: string
+          example: "php"
+    PivotedSkillObject:
+      allOf:
+        - $ref: "#/components/schemas/SkillObject"
+        - type: object
+          properties:
+            pivot:
+              type: object
+              properties:
+                posting_id:
+                  type: integer
+                  example: 1029
+                skill_id:
+                  type: integer
+                  example: 1
+                created_at:
+                  type: string
+                  format: date-time
+                  example: '2020-09-10T07:48:33.000000Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-09-10T07:48:33.000000Z'
+    CompanyObject:
+      type: object
+      description: Company
+      properties:
+        id:
+          type: integer
+          minimum: 1
+          example: 1
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-09-10T07:48:33.000000Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-09-10T07:48:33.000000Z'
+        deleted_at:
+          type: string
+          format: date-time
+          example: null
+        name:
+          type: string
+          example: "Phonet"
+        slug:
+          type: string
+          example: "phonet"
+
