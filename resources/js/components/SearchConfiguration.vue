@@ -4,10 +4,10 @@
             <div class="card  my-2">
                 <div class="card-body">
                     <h5 class="card-title">Skills</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Select your best skills</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Select your 10 best skills</h6>
                     <hr>
                     <div v-for="(skill,index) in skills" class="form-check form-switch">
-                        <input v-model="skill.check" class="form-check-input" type="checkbox" role="switch"
+                        <input :disabled="disablesChecks && !(skill.check)" v-model="skill.check" class="form-check-input" type="checkbox" role="switch"
                                @change="changeCheck($event, index)" :id="skill.name">
                         <label class="form-check-label" :for="skill.name">{{ skill.name }}</label>
                     </div>
@@ -41,10 +41,12 @@
             rates: 'rates',
             navBar:'navBar',
             btnScanDisable:'btnScanDisable',
-
+            disablesChecks:'disablesChecks'
         }),
         data() {
-            return {}
+            return {
+
+            }
         },
         created() {
             this.$store.commit('SET_NAVBAR', true);
@@ -62,6 +64,11 @@
                     this.$store.commit('SET_SCAN_DISABLE', true);
                 }else{
                     this.$store.commit('SET_SCAN_DISABLE', false);
+                }
+                if(this.rates.length >= 10 ){
+                    this.$store.commit('SET_DISABLES_CHECKS', true);
+                }else{
+                    this.$store.commit('SET_DISABLES_CHECKS', false);
                 }
             }
         }

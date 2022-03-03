@@ -74,6 +74,12 @@ services:
             test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
             retries: 3
             timeout: 5s
+    npm:
+      image: node:16
+      working_dir: /var/www/html
+      entrypoint: [ "npm" ]
+      volumes:
+        - "./www/:/var/www/html"
 networks:
     sail:
         driver: bridge

@@ -11,7 +11,9 @@ export default new Vuex.Store({
         navBar : false,
         btnScanDisable: true,
         btnScanVisible: true,
-        btnBackVisible: false
+        btnBackVisible: false,
+        feedback:'',
+        disablesChecks:false
     },
     mutations: {
         SET_SKILLS(state, skills) {
@@ -50,6 +52,9 @@ export default new Vuex.Store({
         },
         SET_BACK_VISIBLE(state,btnBackVisible){
             state.btnBackVisible = btnBackVisible;
+        },
+        SET_DISABLES_CHECKS(state,disablesChecks){
+            state.disablesChecks = disablesChecks;
         }
 
     },

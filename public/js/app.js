@@ -5437,7 +5437,8 @@ __webpack_require__.r(__webpack_exports__);
     skills: 'skills',
     rates: 'rates',
     navBar: 'navBar',
-    btnScanDisable: 'btnScanDisable'
+    btnScanDisable: 'btnScanDisable',
+    disablesChecks: 'disablesChecks'
   }),
   data: function data() {
     return {};
@@ -5470,6 +5471,12 @@ __webpack_require__.r(__webpack_exports__);
         this.$store.commit('SET_SCAN_DISABLE', true);
       } else {
         this.$store.commit('SET_SCAN_DISABLE', false);
+      }
+
+      if (this.rates.length >= 10) {
+        this.$store.commit('SET_DISABLES_CHECKS', true);
+      } else {
+        this.$store.commit('SET_DISABLES_CHECKS', false);
       }
     }
   }
@@ -5670,7 +5677,9 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_1_
     navBar: false,
     btnScanDisable: true,
     btnScanVisible: true,
-    btnBackVisible: false
+    btnBackVisible: false,
+    feedback: '',
+    disablesChecks: false
   },
   mutations: {
     SET_SKILLS: function SET_SKILLS(state, skills) {
@@ -5721,6 +5730,9 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_1_
     },
     SET_BACK_VISIBLE: function SET_BACK_VISIBLE(state, btnBackVisible) {
       state.btnBackVisible = btnBackVisible;
+    },
+    SET_DISABLES_CHECKS: function SET_DISABLES_CHECKS(state, disablesChecks) {
+      state.disablesChecks = disablesChecks;
     }
   },
   actions: {
@@ -28753,7 +28765,7 @@ var render = function () {
             _c("h5", { staticClass: "card-title" }, [_vm._v("Skills")]),
             _vm._v(" "),
             _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-              _vm._v("Select your best skills"),
+              _vm._v("Select your 10 best skills"),
             ]),
             _vm._v(" "),
             _c("hr"),
@@ -28770,7 +28782,12 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-check-input",
-                  attrs: { type: "checkbox", role: "switch", id: skill.name },
+                  attrs: {
+                    disabled: _vm.disablesChecks && !skill.check,
+                    type: "checkbox",
+                    role: "switch",
+                    id: skill.name,
+                  },
                   domProps: {
                     checked: Array.isArray(skill.check)
                       ? _vm._i(skill.check, null) > -1
