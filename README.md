@@ -4,7 +4,7 @@ Find the jobs most relevant to the skills of a software engineer.
 
 See the video example:
 
-[![Watch the video](https://i9.ytimg.com/vi/Tpj7JBSDI5M/mq1.jpg?sqp=CJCzhJEG&rs=AOn4CLCAi_zbwNQNa-JrMyGPWNO8UDArnA)](https://youtu.be/B7QXknPtWi0)
+[![Watch the video](https://i9.ytimg.com/vi/B7QXknPtWi0/mq1.jpg?sqp=CMC8hJEG&rs=AOn4CLDkP9X7ym7_Y-SCecIwZ-D3zX8KMA)](https://youtu.be/B7QXknPtWi0)
 
 
 ### This Repo
