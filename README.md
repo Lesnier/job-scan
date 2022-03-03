@@ -8,7 +8,7 @@ This Laravel project provides a back-end API to manage a data set of jobs, job s
 
 It has included a front-end based on Vue components; handling states with Vuex; and navigation as SPA thanks to Vue-Route.
 Everything compiles optimally with Laravel/Mix.
-Bootstrap 5.1 based components
+Bootstrap 5.1 based css components
 
 ### Setup
 
